@@ -1,18 +1,12 @@
+export const OPTION_REGISTER = 'OPTION_REGISTER'
 
 
-const initialState = {
-    optionRegister: false,
 
+
+export const setOptionRegister = (option) => {
+    return {
+        type: OPTION_REGISTER,
+        //Aqui envimos solo true y false depende si queremos hacer el registro o no 
+        payload: option, 
+    };
 };
-
-//Sin terminar
-const changeOptionRegister = (state = initialState, action) => {
-    switch (key) {
-        case OPTION_REGISTER:
-            
-            break;
-    
-        default:
-            return state
-    }
-}

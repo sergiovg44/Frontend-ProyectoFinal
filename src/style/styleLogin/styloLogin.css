@@ -78,3 +78,7 @@
     background-color: #00bfff96;
   }
   
+  .change-register {
+    cursor: pointer;
+    color: #00bfff;
+  }
