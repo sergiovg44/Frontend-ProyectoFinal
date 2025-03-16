@@ -1,0 +1,17 @@
+.contenedor-botones {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+  
+    position: fixed; /* Lo fija en la pantalla */
+    top: 0; /* Lo coloca en la parte superior */
+    left: 0;
+    width: 100%;
+    background-color: #363636;
+    padding: 10px 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(24, 24, 24, 0.5); /* Opcional */
+  }
+  
