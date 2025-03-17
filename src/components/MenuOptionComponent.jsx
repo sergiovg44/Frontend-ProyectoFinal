@@ -1,9 +1,12 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router";
+import { setSelectSong } from "../pages/ListadoPage/ListadoAction";
+import { useDispatch } from "react-redux";
 
 
 const MenuOptionComponent = () => {
     let location = useLocation()
+    const dispatch = useDispatch();
     // console.log('location',location);
     const {
       pathname
@@ -13,16 +16,16 @@ const MenuOptionComponent = () => {
     const goHome = () => {
       navigate('/')
       //en un futuro para quitar el seleccionado
-      // setTimeout(() => cargaDonutSelect(), 0)
+      setTimeout(() => dispatch(setSelectSong(null)), 0)
       
   }
   const goListado = () => {
       navigate('/listado')
-      // setTimeout(() => cargaDonutSelect(), 0)
+      setTimeout(() => dispatch(setSelectSong(null)), 0)
   }
   const goPerfil = () => {
       navigate('/miprofile')
-      // setTimeout(() => cargaDonutSelect(), 0)
+      setTimeout(() => dispatch(setSelectSong(null)), 0)
   }
   const goCerrarSesion = () => {
     localStorage.removeItem("token");
@@ -30,7 +33,7 @@ const MenuOptionComponent = () => {
     localStorage.removeItem("nombre");
   
       navigate('/login')
-      // setTimeout(() => cargaDonutSelect(), 0)
+      setTimeout(() => setSelectSong(), 0)
 
   }
 

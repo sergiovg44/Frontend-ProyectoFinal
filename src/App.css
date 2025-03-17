@@ -1,19 +1,28 @@
 @import "./style/reset.css";
 @import "./style/styleLogin/styloLogin.css";
 @import "./style/styleMenuOptions.css";
+@import "./style/styleListaCanciones/styleListaCanciones.css";
+@import "./style/styleDetalleCancion/styleDetalleCancion.css";
 
 
 #root {
   max-width: 1280px;
   width: 100%;
-  height: 100vh;
+
   margin: 0 auto;
   /* padding-block: 6rem; */
+  box-sizing: border-box;
 
   text-align: center;
-  background-color: #1a1a1a;
+
   
 }
+
+body{
+
+min-height: 100vh;
+background-color: #121212;}
+
 .contenedor-pages{
     padding-block: 6rem;
 

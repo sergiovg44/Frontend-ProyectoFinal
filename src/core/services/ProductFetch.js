@@ -78,3 +78,18 @@ export const loginUser = async (newUser) => {
       return { success: false, message: error.message };
     }
   };
+
+  // Función para obtener la información de un donut por ID
+export const getSongId = async (songId) => {
+  try {
+    const res = await fetch(`${url}/song/songs/${songId}`);
+    if (!res.ok) {
+      throw new Error(`Error: ${res.status}`);
+    }
+    const result = await res.json();
+    return result.data;
+  } catch (error) {
+    console.error("Error al obtener la cancion:", error);
+    return { success: false, message: error.message };
+  }
+};

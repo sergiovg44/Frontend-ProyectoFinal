@@ -1,0 +1,39 @@
+.grip{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas iguales */
+    gap: 20px; /* Espacio entre columnas y filas */
+    padding: 20px;
+  }
+.card-songs{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    /* border: 1px solid white; */
+    border: 1px solid  #00bfff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    
+}
+
+.imagen-listado{
+    width: 100%;          
+    height: auto;         
+    max-width: 250px;     
+    border-radius: 10px; 
+    margin: auto;
+}
+.text-card{
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    padding-block-start: 1rem;
+}
+
+.artist-name{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}

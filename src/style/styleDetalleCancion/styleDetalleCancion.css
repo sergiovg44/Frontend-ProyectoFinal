@@ -1,0 +1,45 @@
+.card-detail {
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
+
+    justify-content: center; 
+    gap: 6rem; 
+    background-color: #5c5c5c;
+    padding: 3rem 2rem;
+    max-inline-size: 80%;
+    margin: auto;
+    border-radius: 20px;
+    border: 1px solid #00bfff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+
+
+    color: white;
+    flex-wrap: wrap; 
+  }
+  .box-img {
+
+    display: flex;
+    justify-content: center;
+  }
+  
+  .img-detail {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8); 
+  }
+  .song-info {
+
+    text-align: center;
+    
+  }
+  
+  .title-detail {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #00bfff; 
+    margin-bottom: 1rem;
+  }
+  

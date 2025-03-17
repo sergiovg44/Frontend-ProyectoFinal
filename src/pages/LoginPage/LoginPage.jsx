@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setOptionRegister } from "./LoginAction";
 import { createUser, loginUser } from "../../core/services/ProductFetch";
 import { useNavigate } from "react-router";
+import MenuOptionComponent from "../../components/MenuOptionComponent";
 
 const LoginPage = () => {
   let navigate = useNavigate();
@@ -112,6 +113,9 @@ const LoginPage = () => {
 
   return (
     <div>
+      <div>
+        <MenuOptionComponent/>
+      </div>
       <div className="contenedor-login">
         <div className="form">
           {optionRegister ? (
