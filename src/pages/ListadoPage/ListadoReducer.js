@@ -1,28 +1,34 @@
-import { SELECT_SONG, SET_SONGS } from "./ListadoAction";
-
+import { SELECT_SONG, SET_SONGS, SET_USER } from "./ListadoAction";
 
 const initialState = {
-    songs: [],
-    selectedSong: null
-  };
-  
-  const songsReducer  = (state = initialState, action) => {
-    switch (action.type) {
-      case SET_SONGS:
-        return {
-          ...state,
-          songs: action.payload,
-        };
+  songs: [],
+  selectedSong: null,
+  userLogin: null,
+};
 
-        case SELECT_SONG:
-          return {
-              ...state,
-              // Guardamos la cancion seleccionado
-              selectedSong: action.payload 
-          };
-      default:
-        return state;
-    }
-  };
+const songsReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case SET_SONGS:
+      return {
+        ...state,
+        songs: action.payload,
+      };
 
-  export default songsReducer;
+    case SELECT_SONG:
+      return {
+        ...state,
+        // Guardamos la cancion seleccionado
+        selectedSong: action.payload,
+      };
+
+    case SET_USER:
+      return {
+        ...state,
+        userLogin: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+export default songsReducer;

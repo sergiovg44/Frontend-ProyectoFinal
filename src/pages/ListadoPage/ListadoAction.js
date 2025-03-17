@@ -1,5 +1,6 @@
 export const SET_SONGS = "SET_SONGS";
 export const SELECT_SONG = 'SELECT_SONG'
+export const SET_USER = "SET_USER"
 
 
 
@@ -16,3 +17,10 @@ export const setSelectSong = (donut) => {
         payload: donut   
     }
 }
+
+export const setUser = (userData) => {
+    return {
+      type: SET_USER,
+      payload: userData,
+    };
+  };

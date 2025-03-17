@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setOptionRegister } from "./LoginAction";
 import { createUser, loginUser } from "../../core/services/ProductFetch";
@@ -104,12 +104,19 @@ const LoginPage = () => {
         password: "",
       });
 
-      alert("Inicio de sesión exitoso");
+      console.log("Inicio de sesión exitoso");
       goHome();
     } catch (error) {
       alert("Hubo un error al iniciar sesión: " + error.message);
     }
   };
+  useEffect(() =>{
+
+    localStorage.removeItem("token");
+    localStorage.removeItem("id");
+    localStorage.removeItem("nombre");
+    
+  },[])
 
   return (
     <div>

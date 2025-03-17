@@ -1,3 +1,5 @@
+import { handleTokenExpired } from "../../utils/utils";
+
 // Esta es la url basica ya dependiendo de cada peticion cambiara el final
 const url = `http://localhost:3000`;
 
@@ -34,7 +36,6 @@ export const createUser = async (newUser) => {
 };
 
 export const loginUser = async (newUser) => {
-    console.log(newUser)
     try {
       const response = await fetch(`${url}/user/login`, {
         method: "POST",
@@ -79,7 +80,6 @@ export const loginUser = async (newUser) => {
     }
   };
 
-  // Función para obtener la información de un donut por ID
 export const getSongId = async (songId) => {
   try {
     const res = await fetch(`${url}/song/songs/${songId}`);
@@ -93,3 +93,114 @@ export const getSongId = async (songId) => {
     return { success: false, message: error.message };
   }
 };
+
+export const toggleFavourite = async (idSong, method , dispatch, navigate) => {
+  try {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      return { success: false, message: "Debes iniciar sesión para agregar favoritos." };
+    }
+
+    const res = await fetch(`${url}/user/favourite/${idSong}`, {
+      method: method, // O "PUT" según tu ruta
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": token, 
+      },
+    });
+
+    if (res.status === 401) {
+      handleTokenExpired(dispatch, navigate)
+      return { success: false, expired: true, message: "Token expirado" };
+    }
+    const result = await res.json();
+    console.log(" Respuesta del backend:", result);
+
+    if (!res.ok) {
+      return { success: false, message: result.message };
+    }
+
+   return { success: true, message: result.message, data: result.data };
+
+  } catch (error) {
+    console.error("Error al agregar favorito:", error);
+    return { success: false, message: "Error de red o del servidor." };
+  }
+};
+
+export const getUserId = async (dispatch, navigate) => {
+  try {
+    const token = localStorage.getItem("token");
+
+
+    if (!token) {
+      return { success: false, message: "Debes iniciar sesión para obtener los datos." };
+    }
+
+    const res = await fetch(`${url}/user/user`, {
+      method: "GET", 
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": token, 
+      },
+    });
+
+    if (res.status === 401) {
+      //Esto es para cuando caduca el token
+      handleTokenExpired(dispatch, navigate)
+      return { success: false, expired: true, message: "Token expirado" };
+    }
+    const result = await res.json();
+    if (!res.ok) {
+      return { success: false, message: result.message };
+    }
+    return { success: true, data: result.data }
+  } catch (error) {
+    console.error("Error al obtener el usuario:", error);
+    return { success: false, message: error.message };
+  }
+};
+
+
+
+// export const toggleFavourite = async (idSong, method, dispatch, navigate) => {
+//   try {
+//     const token = localStorage.getItem("token");
+//     console.log("🔍 Token enviado:", token);
+
+//     if (!token) {
+//       return { success: false, message: "Debes iniciar sesión para agregar favoritos." };
+//     }
+
+//     const res = await fetch(`${url}/user/favourite/${idSong}`, {
+//       method: method,
+//       headers: {
+//         "Content-Type": "application/json",
+//         "auth-token": token,
+//       },
+//     });
+
+//     console.log("🔍 Status recibido del backend:", res.status);
+
+//     // ✅ Verifica 401 antes de parsear JSON
+//     if (res.status === 401) {
+//       console.log("🔴 TOKEN EXPIRADO - Ejecutando handleTokenExpired");
+//       handleTokenExpired(dispatch, navigate);
+//       return { success: false, expired: true, message: "Token expirado" };
+//     }
+
+//     const result = await res.json(); // ✅ Solo si NO es 401
+
+//     console.log("✅ Respuesta del backend:", result);
+
+//     if (!res.ok) {
+//       return { success: false, message: result.message };
+//     }
+
+//     return { success: true, message: result.message, data: result.data };
+
+//   } catch (error) {
+//     console.error("❌ Error al agregar favorito:", error);
+//     return { success: false, message: "Error de red o del servidor." };
+//   }
+// };
