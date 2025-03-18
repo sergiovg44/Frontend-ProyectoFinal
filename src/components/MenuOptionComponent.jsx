@@ -46,6 +46,10 @@ const MenuOptionComponent = () => {
     navigate("/login")
     setTimeout(() => dispatch(setSelectSong(null)), 0)
   }
+  const goContacto = () => {
+    navigate("/contacto")
+    setTimeout(() => dispatch(setSelectSong(null)), 0)
+  }
 
   return (
     <div>
@@ -65,6 +69,9 @@ const MenuOptionComponent = () => {
           ) : (
             <button onClick={goInicioSesion}>Iniciar Sesion</button>
           )}
+        </div>
+        <div>
+          <button onClick={goContacto}>Contacto</button>
         </div>
       </div>
     </div>

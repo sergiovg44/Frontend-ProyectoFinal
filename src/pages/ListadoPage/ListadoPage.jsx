@@ -6,8 +6,9 @@ import { setSongs, setUser } from "./ListadoAction";
 import ListaCancionesComponent from "../../components/ListaCancionesComponent";
 import DetalleSongComponent from "../../components/DetalleSongComponent";
 import heartFilled from "../../../src/assets/corazon-relleno.png";
-import heartOutline from "../../../src/assets/corazon-sin-relleno.png";
+import heartOutline from "../../../src/assets/corazon-sin-relleno.svg";
 import { useNavigate } from "react-router";
+import { loadUser, verificarTokenPeriodicamente } from "../../utils/utils";
 
 const ListadoPage = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ const ListadoPage = () => {
     console.log(songs);
     dispatch(setSongs(songs));
   };
+
 
 
   const handleFavorito = async (idSong) => {
@@ -45,13 +47,17 @@ const ListadoPage = () => {
     return heartOutline;
   };
 
+
   useEffect(() => {
-    // console.log(selectedSong);
-    console.log(userLogin);
-  }, [userLogin]);
+    const intervalId = verificarTokenPeriodicamente(dispatch, navigate);
+    console.log(userLogin)
+    return () => clearInterval(intervalId);
+  }, [dispatch, navigate]);
+  
 
   useEffect(() => {
     loadSongs();
+    loadUser(dispatch, navigate, setUser)
 
   }, []);
 

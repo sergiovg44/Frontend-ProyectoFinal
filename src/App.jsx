@@ -6,6 +6,7 @@ import LoginPage from './pages/LoginPage/LoginPage'
 import HomePage from './pages/HomePage/HomePage'
 import ListadoPage from './pages/ListadoPage/ListadoPage'
 import PerfilPage from './pages/PerfilPage/PerfilPage'
+import ContactoPage from './pages/ContactoPage/ContactoPage'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/listado" element={<ListadoPage/>}/>
         <Route path="/miprofile" element={<PerfilPage/>}/>
+        <Route path="/contacto" element={<ContactoPage/>}/>
       </Routes>
       </BrowserRouter>
     </Provider>

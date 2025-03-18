@@ -163,44 +163,35 @@ export const getUserId = async (dispatch, navigate) => {
 
 
 
-// export const toggleFavourite = async (idSong, method, dispatch, navigate) => {
-//   try {
-//     const token = localStorage.getItem("token");
-//     console.log("🔍 Token enviado:", token);
+export const updateDonut = async (modifiUser ,dispatch, navigate) => {
+  try {
+    const token = localStorage.getItem("token");
 
-//     if (!token) {
-//       return { success: false, message: "Debes iniciar sesión para agregar favoritos." };
-//     }
 
-//     const res = await fetch(`${url}/user/favourite/${idSong}`, {
-//       method: method,
-//       headers: {
-//         "Content-Type": "application/json",
-//         "auth-token": token,
-//       },
-//     });
+    if (!token) {
+      return { success: false, message: "Debes iniciar sesión para obtener los datos." };
+    }
+    const res = await fetch(`${url}/${dd}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "Application/json",
+        "auth-token": token, 
+      },
+      body: JSON.stringify(modifiUser),
+    });
 
-//     console.log("🔍 Status recibido del backend:", res.status);
-
-//     // ✅ Verifica 401 antes de parsear JSON
-//     if (res.status === 401) {
-//       console.log("🔴 TOKEN EXPIRADO - Ejecutando handleTokenExpired");
-//       handleTokenExpired(dispatch, navigate);
-//       return { success: false, expired: true, message: "Token expirado" };
-//     }
-
-//     const result = await res.json(); // ✅ Solo si NO es 401
-
-//     console.log("✅ Respuesta del backend:", result);
-
-//     if (!res.ok) {
-//       return { success: false, message: result.message };
-//     }
-
-//     return { success: true, message: result.message, data: result.data };
-
-//   } catch (error) {
-//     console.error("❌ Error al agregar favorito:", error);
-//     return { success: false, message: "Error de red o del servidor." };
-//   }
-// };
+    if (res.status === 401) {
+      //Esto es para cuando caduca el token
+      handleTokenExpired(dispatch, navigate)
+      return { success: false, expired: true, message: "Token expirado" };
+    }
+    const result = await res.json();
+    if (!res.ok) {
+      return { success: false, message: result.message };
+    }
+    return { success: true, data: result.data }
+  } catch (error) {
+    console.error("Error al actualizar el usuario:", error);
+    return { success: false, message: error.message };
+  }
+};

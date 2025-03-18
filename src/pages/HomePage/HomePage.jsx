@@ -4,22 +4,21 @@ import { getUserId } from '../../core/services/ProductFetch';
 import { setUser } from '../ListadoPage/ListadoAction';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
+import { loadUser, verificarTokenPeriodicamente } from '../../utils/utils';
 
 const HomePage = () => {
   const dispatch = useDispatch()
   let navigate = useNavigate();
+  
 
-    const loadUser = async () => {
-      const response = await getUserId(dispatch, navigate);
-      if (response.success) {
-        dispatch(setUser(response.data)); 
-      }
-    };
-
+  useEffect(() => {
+    const intervalId = verificarTokenPeriodicamente(dispatch, navigate);
+    return () => clearInterval(intervalId);
+  }, [dispatch, navigate]);
 
       useEffect(() => {
-        loadUser()
-    
+
+        loadUser(dispatch, navigate, setUser)
       }, []);
   return (
     <div>

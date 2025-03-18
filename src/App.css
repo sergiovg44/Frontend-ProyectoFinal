@@ -3,6 +3,7 @@
 @import "./style/styleMenuOptions.css";
 @import "./style/styleListaCanciones/styleListaCanciones.css";
 @import "./style/styleDetalleCancion/styleDetalleCancion.css";
+@import "./style/stylePerfil/stylePerfil.css";
 
 
 #root {

@@ -1,6 +1,7 @@
 import { combineReducers } from "redux"
 import changeOptionRegister from "../../../pages/LoginPage/LoginReducer"
 import songsReducer from "../../../pages/ListadoPage/ListadoReducer"
+import optionUpdateReducer from "../../../pages/PerfilPage/PerfilReducer"
 
 
 
@@ -8,7 +9,8 @@ import songsReducer from "../../../pages/ListadoPage/ListadoReducer"
 
 const reducers = combineReducers({
     changeOptionRegister,
-    songsReducer
+    songsReducer,
+    optionUpdateReducer
 
 })
 

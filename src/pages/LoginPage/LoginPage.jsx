@@ -57,7 +57,7 @@ const LoginPage = () => {
     return true;
   };
 
-  const registerHandler = async (e) => {
+  const registerHandler = async () => {
     const isValid = checkFields(newUser);
     if (!isValid) return;
 
