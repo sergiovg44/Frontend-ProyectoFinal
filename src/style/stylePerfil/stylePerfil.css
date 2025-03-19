@@ -28,6 +28,7 @@
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
+  cursor: pointer;
 }
 
 
@@ -55,4 +56,8 @@
 
 .edit-button:hover{
   background-color: #0995c4
+}
+
+.input-file{
+  display: none;
 }

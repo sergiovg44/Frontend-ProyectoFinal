@@ -8,9 +8,9 @@ const DetalleSongComponent = (props) => {
   const dispatch = useDispatch();
 
   const getBarColor = (popularity) => {
-    if (popularity >= 80) return "#00ff00"; // verde
-    if (popularity >= 50) return "#ffff00"; // amarillo
-    return "#ff0000"; // rojo
+    if (popularity >= 80) return "#00ff00"; 
+    if (popularity >= 50) return "#ffff00"; 
+    return "#ff0000"; 
   };
 
   return (
@@ -32,6 +32,7 @@ const DetalleSongComponent = (props) => {
           alt="imagen del albun"
           className="img-detail"
         />
+
       </div>
       <div className="song-info">
         <h2 className="title-detail">Detalle de la cancion</h2>
@@ -48,6 +49,9 @@ const DetalleSongComponent = (props) => {
             ))}
           </div>
           <span>{transformDate(selectedSong.release_date)}</span>
+        </div>
+        <div>
+          <button>Volver</button>
         </div>
       </div>
       <div className="popularity-wrapper">

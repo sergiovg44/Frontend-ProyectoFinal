@@ -163,7 +163,7 @@ export const getUserId = async (dispatch, navigate) => {
 
 
 
-export const updateDonut = async (modifiUser ,dispatch, navigate) => {
+export const updateUser = async (modifiUser ,dispatch, navigate) => {
   try {
     const token = localStorage.getItem("token");
 
@@ -171,7 +171,7 @@ export const updateDonut = async (modifiUser ,dispatch, navigate) => {
     if (!token) {
       return { success: false, message: "Debes iniciar sesión para obtener los datos." };
     }
-    const res = await fetch(`${url}/${dd}`, {
+    const res = await fetch(`${url}/user/user`, {
       method: "PATCH",
       headers: {
         "content-type": "Application/json",
@@ -192,6 +192,78 @@ export const updateDonut = async (modifiUser ,dispatch, navigate) => {
     return { success: true, data: result.data }
   } catch (error) {
     console.error("Error al actualizar el usuario:", error);
+    return { success: false, message: error.message };
+  }
+};
+
+export const updateImage = async (file ,dispatch, navigate) => {
+  try {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      return { success: false, message: "Debes iniciar sesión para subir la imagen." };
+    }
+
+    const formData = new FormData();
+    formData.append("image", file); 
+
+    const res = await fetch(`${url}/user/imageProfile`, {
+      method: "PATCH",
+      headers: {
+        "auth-token": token, 
+      },
+      body: formData,
+    });
+
+    if (res.status === 401) {
+      handleTokenExpired(dispatch, navigate);
+      return { success: false, expired: true, message: "Token expirado" };
+    }
+
+    const result = await res.json();
+
+    if (!res.ok) {
+      return { success: false, message: result.message };
+    }
+
+    return { success: true, data: result.data };
+
+  } catch (error) {
+    console.error("Error al subir imagen:", error);
+    return { success: false, message: error.message };
+  }
+}
+
+
+export const deleteUser = async (dispatch, navigate) => {
+  try {
+    const token = localStorage.getItem("token");
+
+
+    if (!token) {
+      return { success: false, message: "Debes iniciar sesión para obtener los datos." };
+    }
+
+    const res = await fetch(`${url}/user/user`, {
+      method: "DELETE", 
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": token, 
+      },
+    });
+
+    if (res.status === 401) {
+      //Esto es para cuando caduca el token
+      handleTokenExpired(dispatch, navigate)
+      return { success: false, expired: true, message: "Token expirado" };
+    }
+    const result = await res.json();
+    if (!res.ok) {
+      return { success: false, message: result.message };
+    }
+    return { success: true }
+  } catch (error) {
+    console.error("Error al obtener el usuario:", error);
     return { success: false, message: error.message };
   }
 };

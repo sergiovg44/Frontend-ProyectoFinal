@@ -30,7 +30,7 @@ export const handleTokenExpired = (dispatch, navigate) => {
   navigate("/login");
 };
 
-export const loadUser = async (dispatch, navigate, setUser) => {
+export const loadUser = async (dispatch, navigate) => {
   const token = localStorage.getItem("token");
   if (token) {
     const response = await getUserId(dispatch, navigate);

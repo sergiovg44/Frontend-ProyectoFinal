@@ -2,6 +2,7 @@ import React from "react";
 import { useLocation, useNavigate } from "react-router";
 import { setSelectSong, setUser } from "../pages/ListadoPage/ListadoAction";
 import { useDispatch, useSelector } from "react-redux";
+import { setOptionUpdate } from "../pages/PerfilPage/PerfilAction";
 
 const MenuOptionComponent = () => {
   const { userLogin } = useSelector((state) => state.songsReducer);
@@ -17,11 +18,15 @@ const MenuOptionComponent = () => {
     navigate("/");
     //en un futuro para quitar el seleccionado
     setTimeout(() => dispatch(setSelectSong(null)), 0);
+    setTimeout(() => dispatch(setOptionUpdate(false)), 0);
+
 
   };
   const goListado = () => {
     navigate("/listado");
     setTimeout(() => dispatch(setSelectSong(null)), 0);
+    setTimeout(() => dispatch(setOptionUpdate(false)), 0);
+
 
   };
   const goPerfil = () => {
@@ -31,6 +36,8 @@ const MenuOptionComponent = () => {
       navigate("/login");
     }
     setTimeout(() => dispatch(setSelectSong(null)), 0);
+    setTimeout(() => dispatch(setOptionUpdate(false)), 0);
+
 
   };
   const goCerrarSesion = () => {
@@ -41,14 +48,20 @@ const MenuOptionComponent = () => {
     navigate("/");
     setTimeout(() => dispatch(setSelectSong(null)), 0);
     setTimeout(() => dispatch(setUser(null)), 0);
+    setTimeout(() => dispatch(setOptionUpdate(false)), 0);
+    
   };
   const goInicioSesion = () => {
     navigate("/login")
     setTimeout(() => dispatch(setSelectSong(null)), 0)
+    setTimeout(() => dispatch(setOptionUpdate(false)), 0);
+
   }
   const goContacto = () => {
     navigate("/contacto")
     setTimeout(() => dispatch(setSelectSong(null)), 0)
+    setTimeout(() => dispatch(setOptionUpdate(false)), 0);
+
   }
 
   return (
