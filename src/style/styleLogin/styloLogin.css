@@ -5,6 +5,10 @@
   min-height: 100vh;
   background-color: #121212;
   margin: 0;
+  background-image: url('https://images.unsplash.com/photo-1518972559570-7cc1309f3229'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
 }
 
@@ -91,3 +95,6 @@
     cursor: pointer;
     color: #00bfff;
   }
+.text-login-botton{
+  text-align: center;
+}

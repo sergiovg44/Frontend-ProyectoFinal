@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { transformDate, transformTime } from "../utils/utils";
+import { setSelectSong } from "../pages/ListadoPage/ListadoAction";
 
 const DetalleSongComponent = (props) => {
   const { iconHeart, handleFavorito } = props;
@@ -40,18 +41,20 @@ const DetalleSongComponent = (props) => {
           <div>
             <span className="name-song">{selectedSong.song_name} </span>
           </div>
-          <span>{transformTime(selectedSong.duration_ms)}</span>
           <div className="detail-artist">
             {selectedSong.artist_name.map((e, idx) => (
               <span key={idx} className="">
                 {e}{" "}
               </span>
+              
             ))}
           </div>
+          <span>{transformTime(selectedSong.duration_ms)}</span>
+
           <span>{transformDate(selectedSong.release_date)}</span>
         </div>
         <div>
-          <button>Volver</button>
+          <button className="edit-button" onClick={()=>dispatch(setSelectSong(null))}>Volver</button>
         </div>
       </div>
       <div className="popularity-wrapper">

@@ -4,29 +4,37 @@
 @import "./style/styleListaCanciones/styleListaCanciones.css";
 @import "./style/styleDetalleCancion/styleDetalleCancion.css";
 @import "./style/stylePerfil/stylePerfil.css";
+@import "./style/styleHome/styleHome.css";
 
 
-#root {
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-image: url('https://images.unsplash.com/photo-1518972559570-7cc1309f3229');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+}
+
+.contenedor-pages {
+  padding-block-start: 6rem;
+  min-height: 100vh
+
+}
+
+.container{
   max-width: 1280px;
-  width: 100%;
-
-  margin: 0 auto;
-  /* padding-block: 6rem; */
-  box-sizing: border-box;
-
+  margin-inline: auto;
   text-align: center;
-
-  
-}
-
-body{
-
-min-height: 100vh;
-background-color: #121212;}
-
-.contenedor-pages{
-    padding-block: 6rem;
-
 }
 
 
+@media (width < 860px) {
+
+  .contenedor-pages{
+      padding-block-start: 7rem;
+  }
+}

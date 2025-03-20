@@ -24,7 +24,7 @@ const ListaCancionesComponent = (props) => {
 
   return (
     <div>
-      <h2 className="title">Listado de canciones</h2>
+      <h2 className="hero-title">Listado de canciones</h2>
       <div className="grip">
         {songs && songs.length > 0 ? (
           songs.map((p, idx) => (

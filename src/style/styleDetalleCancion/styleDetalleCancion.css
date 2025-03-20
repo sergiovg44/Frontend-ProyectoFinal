@@ -3,10 +3,10 @@
     flex-direction: row; 
     align-items: center;
     position: relative;
+    min-width: 70%;
 
-    justify-content: center; 
     gap: 6rem; 
-    background-color: #5c5c5c;
+    background-color: #1a1a1a;
     padding: 3rem 2rem;
     max-inline-size: 80%;
     margin: auto;
@@ -56,6 +56,12 @@
     font-size: 1.5rem;
     font-style: italic;
     font-weight: bold;
+    
+  }
+  .detail-artist{
+    font-style: oblique;
+    font-size: 1.2rem;
+    font-weight: bold;
   }
 
   .popularity-wrapper {
@@ -93,8 +99,34 @@
     right: 1.5rem;
     width: 30px;
     height: 30px;
-    cursor: pointer;
-    
-
-    
+    cursor: pointer; 
   }
+
+
+  .content-center{
+    height: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+  @media (width < 1250px) {
+    .card-detail{
+      gap: 2rem;
+      justify-content: center;
+    }
+ 
+}
+  @media (width < 845px) {
+
+    .img-detail {
+      width: 75%;
+  }
+}
+  @media (width < 450px) {
+
+    .img-detail {
+      width: 75%;
+  }
+}
