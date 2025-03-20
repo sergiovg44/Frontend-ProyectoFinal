@@ -7,6 +7,8 @@ import HomePage from './pages/HomePage/HomePage'
 import ListadoPage from './pages/ListadoPage/ListadoPage'
 import PerfilPage from './pages/PerfilPage/PerfilPage'
 import ContactoPage from './pages/ContactoPage/ContactoPage'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
@@ -22,6 +24,7 @@ function App() {
         <Route path="/miprofile" element={<PerfilPage/>}/>
         <Route path="/contacto" element={<ContactoPage/>}/>
       </Routes>
+      <ToastContainer position="top-center" autoClose={3000} />
       </BrowserRouter>
     </Provider>
   )

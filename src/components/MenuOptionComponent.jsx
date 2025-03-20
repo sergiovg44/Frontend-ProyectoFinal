@@ -16,18 +16,14 @@ const MenuOptionComponent = () => {
 
   const goHome = () => {
     navigate("/");
-    //en un futuro para quitar el seleccionado
+
     setTimeout(() => dispatch(setSelectSong(null)), 0);
     setTimeout(() => dispatch(setOptionUpdate(false)), 0);
-
-
   };
   const goListado = () => {
     navigate("/listado");
     setTimeout(() => dispatch(setSelectSong(null)), 0);
     setTimeout(() => dispatch(setOptionUpdate(false)), 0);
-
-
   };
   const goPerfil = () => {
     if (userLogin !== null) {
@@ -37,8 +33,6 @@ const MenuOptionComponent = () => {
     }
     setTimeout(() => dispatch(setSelectSong(null)), 0);
     setTimeout(() => dispatch(setOptionUpdate(false)), 0);
-
-
   };
   const goCerrarSesion = () => {
     localStorage.removeItem("token");
@@ -49,41 +43,35 @@ const MenuOptionComponent = () => {
     setTimeout(() => dispatch(setSelectSong(null)), 0);
     setTimeout(() => dispatch(setUser(null)), 0);
     setTimeout(() => dispatch(setOptionUpdate(false)), 0);
-    
   };
   const goInicioSesion = () => {
-    navigate("/login")
-    setTimeout(() => dispatch(setSelectSong(null)), 0)
+    navigate("/login");
+    setTimeout(() => dispatch(setSelectSong(null)), 0);
     setTimeout(() => dispatch(setOptionUpdate(false)), 0);
-
-  }
+  };
   const goContacto = () => {
-    navigate("/contacto")
-    setTimeout(() => dispatch(setSelectSong(null)), 0)
+    navigate("/contacto");
+    setTimeout(() => dispatch(setSelectSong(null)), 0);
     setTimeout(() => dispatch(setOptionUpdate(false)), 0);
-
-  }
+  };
 
   return (
     <div>
       <div className="contenedor-botones">
-        <div>
+        <div className="fila">
           <button onClick={goHome}>Home</button>
-        </div>
-        <div>
+
           <button onClick={goListado}>Canciones</button>
-        </div>
-        <div>
+
           <button onClick={goPerfil}>Mi perfil</button>
         </div>
-        <div>
+        <div className="fila">
           {userLogin !== null ? (
             <button onClick={goCerrarSesion}>Cerrar sesion</button>
           ) : (
             <button onClick={goInicioSesion}>Iniciar Sesion</button>
           )}
-        </div>
-        <div>
+
           <button onClick={goContacto}>Contacto</button>
         </div>
       </div>

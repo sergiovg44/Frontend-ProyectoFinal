@@ -1,5 +1,6 @@
-import { getUserId } from "../core/services/ProductFetch";
-import { setUser } from "../pages/ListadoPage/ListadoAction";
+import { toast } from "react-toastify";
+import { getSongs, getUserId } from "../core/services/ProductFetch";
+import { setSongs, setUser } from "../pages/ListadoPage/ListadoAction";
 
 export const transformTime = (ms) => {
   const totalSeconds = Math.floor(ms / 1000);
@@ -26,7 +27,7 @@ export const handleTokenExpired = (dispatch, navigate) => {
   localStorage.removeItem("nombre");
 
   dispatch(setUser(null));
-  alert("Se ha excedido el tiempo de la sesion");
+  toast.info("Se ha excedido el tiempo de la sesion");
   navigate("/login");
 };
 
@@ -40,6 +41,13 @@ export const loadUser = async (dispatch, navigate) => {
   }
 };
 
+export const loadSongs = async (dispatch) => {
+    const songs = await getSongs();
+    if(songs.success){
+      dispatch(setSongs(songs.data));
+    }
+};
+
 
 export const verificarTokenPeriodicamente = (dispatch, navigate, intervaloMs = 60000) => {
   const intervalId = setInterval(async () => {
@@ -49,7 +57,6 @@ export const verificarTokenPeriodicamente = (dispatch, navigate, intervaloMs = 6
     const response = await getUserId(dispatch, navigate);
 
     if (response.expired) {
-      console.log("Token expirado detectado (verificación automática)");
 
       clearInterval(intervalId); 
     }

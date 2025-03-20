@@ -4,6 +4,7 @@ import { setOptionRegister } from "./LoginAction";
 import { createUser, loginUser } from "../../core/services/ProductFetch";
 import { useNavigate } from "react-router";
 import MenuOptionComponent from "../../components/MenuOptionComponent";
+import { toast } from "react-toastify";
 
 const LoginPage = () => {
   let navigate = useNavigate();
@@ -21,9 +22,8 @@ const LoginPage = () => {
   };
 
   const changeRegister = (value) => {
-    // console.log(optionRegister)
     dispatch(setOptionRegister(value));
-    // console.log(optionRegister)
+
     setNewUser({
       nombre: "",
       apellidos: "",
@@ -35,22 +35,22 @@ const LoginPage = () => {
   const checkFields = (user) => {
     if (optionRegister) {
       if (user.nombre.length < 3) {
-        alert("El nombre debe tener al menos 3 caracteres.");
+        toast.info("El nombre debe tener al menos 3 caracteres.");
         return false;
       }
 
       if (user.apellidos.length < 3) {
-        alert("El apellido debe tener al menos 3 caracteres.");
+        toast.info("El apellido debe tener al menos 3 caracteres.");
         return false;
       }
     }
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(user.email)) {
-      alert("Por favor, ingresa un email válido.");
+      toast.info("Por favor, ingresa un email válido.");
       return false;
     }
     if (user.password.length < 3) {
-      alert("La contraseña debe tener al menos 3 caracteres.");
+      toast.info("La contraseña debe tener al menos 3 caracteres.");
       return false;
     }
 
@@ -65,7 +65,7 @@ const LoginPage = () => {
       const response = await createUser(newUser);
 
       if (!response.success) {
-        alert("Error: " + response.message);
+        toast.error("Error: " + response.message);
         return;
       }
       setNewUser({
@@ -75,10 +75,10 @@ const LoginPage = () => {
         password: "",
       });
 
-      alert("Registro exitoso");
+      toast.success("Registro exitoso");
       changeRegister(false);
     } catch (error) {
-      alert("Hubo un error en el registro. " + error.message);
+      toast.error("Hubo un error en el registro. " + error.message);
     }
   };
   const handlerRegisterUser = (name, value) => {
@@ -96,7 +96,7 @@ const LoginPage = () => {
       const response = await loginUser(newUser);
 
       if (!response.success) {
-        alert("Error: " + response.message);
+        toast.error("Error: " + response.message);
         return;
       }
       setNewUser({
@@ -107,21 +107,19 @@ const LoginPage = () => {
       console.log("Inicio de sesión exitoso");
       goHome();
     } catch (error) {
-      alert("Hubo un error al iniciar sesión: " + error.message);
+      toast.error("Hubo un error al iniciar sesión: " + error.message);
     }
   };
-  useEffect(() =>{
-
+  useEffect(() => {
     localStorage.removeItem("token");
     localStorage.removeItem("id");
     localStorage.removeItem("nombre");
-    
-  },[])
+  }, []);
 
   return (
     <div>
       <div>
-        <MenuOptionComponent/>
+        <MenuOptionComponent />
       </div>
       <div className="contenedor-login">
         <div className="form">
@@ -198,9 +196,8 @@ const LoginPage = () => {
               <button className="submit" onClick={() => registerHandler()}>
                 Registro
               </button>
-
-              <span>
-                <>
+              <div className="text-login-botton">
+                <span>
                   Ya tienes cuenta?{" "}
                   <span
                     className="change-register"
@@ -208,16 +205,17 @@ const LoginPage = () => {
                   >
                     Inicia sesión
                   </span>
-                </>
-              </span>
+                </span>
+              </div>
             </>
           ) : (
             <>
               <button className="submit" onClick={() => loginHandler()}>
                 Inicio sesión
               </button>
-              <span>
-                <>
+
+              <div className="text-login-botton">
+                <span>
                   No tienes cuenta?{" "}
                   <span
                     className="change-register"
@@ -225,8 +223,8 @@ const LoginPage = () => {
                   >
                     Regístrate
                   </span>
-                </>
-              </span>
+                </span>
+              </div>
             </>
           )}
         </div>

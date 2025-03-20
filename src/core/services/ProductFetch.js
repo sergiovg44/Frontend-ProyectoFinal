@@ -72,8 +72,7 @@ export const loginUser = async (newUser) => {
         throw new Error(`Error: ${res.status}`);
       }
       const result = await res.json();
-      //saco el data de la respuesta de la base de datos 
-      return result.data;
+      return { success: true, data: result.data }
     } catch (error) {
       console.error("Error al obtener las canciones:", error);
       return { success: false, message: error.message };
