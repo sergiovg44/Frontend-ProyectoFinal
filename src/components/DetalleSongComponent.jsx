@@ -9,9 +9,9 @@ const DetalleSongComponent = (props) => {
   const dispatch = useDispatch();
 
   const getBarColor = (popularity) => {
-    if (popularity >= 80) return "#00ff00"; 
-    if (popularity >= 50) return "#ffff00"; 
-    return "#ff0000"; 
+    if (popularity >= 80) return "#00ff00";
+    if (popularity >= 50) return "#ffff00";
+    return "#ff0000";
   };
 
   return (
@@ -22,7 +22,7 @@ const DetalleSongComponent = (props) => {
           alt="Añadir a favoritos"
           className="favorite-icon"
           onClick={(e) => {
-            e.stopPropagation(); 
+            e.stopPropagation();
             handleFavorito(selectedSong._id);
           }}
         />
@@ -33,7 +33,6 @@ const DetalleSongComponent = (props) => {
           alt="imagen del albun"
           className="img-detail"
         />
-
       </div>
       <div className="song-info">
         <h2 className="title-detail">Detalle de la cancion</h2>
@@ -46,7 +45,6 @@ const DetalleSongComponent = (props) => {
               <span key={idx} className="">
                 {e}{" "}
               </span>
-              
             ))}
           </div>
           <span>{transformTime(selectedSong.duration_ms)}</span>
@@ -54,7 +52,12 @@ const DetalleSongComponent = (props) => {
           <span>{transformDate(selectedSong.release_date)}</span>
         </div>
         <div>
-          <button className="edit-button" onClick={()=>dispatch(setSelectSong(null))}>Volver</button>
+          <button
+            className="edit-button"
+            onClick={() => dispatch(setSelectSong(null))}
+          >
+            Volver
+          </button>
         </div>
       </div>
       <div className="popularity-wrapper">

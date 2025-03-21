@@ -1,9 +1,10 @@
-import { SELECT_SONG, SET_SONGS, SET_USER } from "./ListadoAction";
+import { SELECT_SONG, SET_OPTION_FAVORITES, SET_SONGS, SET_USER } from "./ListadoAction";
 
 const initialState = {
   songs: [],
   selectedSong: null,
   userLogin: null,
+  mostrarFavoritos: false,
 };
 
 const songsReducer = (state = initialState, action) => {
@@ -26,6 +27,9 @@ const songsReducer = (state = initialState, action) => {
         ...state,
         userLogin: action.payload,
       };
+    case SET_OPTION_FAVORITES:
+      return { ...state, mostrarFavoritos: action.payload };
+
     default:
       return state;
   }

@@ -39,18 +39,33 @@
     justify-content: center;
     gap: 20px;
 }
+.text-favorite{
+    grid-column: 2 / 4;
+    grid-column-start: 2;
+    padding-block-start: 2rem;
+}
 
 @media (width < 1250px) {
     .grip{
         grid-template-columns: repeat(3, 1fr); 
 
       }
+      .text-favorite{
+
+        grid-column-start: 1;
+ 
+    }
   }
   
   @media (width < 860px) {
     .grip{
         grid-template-columns: repeat(2, 1fr); 
 
+    }
+    .text-favorite{
+
+        grid-column: 1 / 3;
+ 
     }
 
   }

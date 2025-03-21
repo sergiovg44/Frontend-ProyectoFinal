@@ -10,6 +10,7 @@ import {
   updateImage,
   updateUser,
 } from "../../core/services/ProductFetch";
+import { toast } from "react-toastify";
 
 const PerfilPage = () => {
   const dispatch = useDispatch();

@@ -1,18 +1,16 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setSelectSong } from "../pages/ListadoPage/ListadoAction";
+import {
+  setOptionFavorites,
+  setSelectSong,
+} from "../pages/ListadoPage/ListadoAction";
 import { getSongId } from "../core/services/ProductFetch";
 
-
-
 const ListaCancionesComponent = (props) => {
-  const {
-    iconHeart,
-    handleFavorito
-
-
-  } = props
-  const { songs, selectedSong } = useSelector((state) => state.songsReducer);
+  const { iconHeart, handleFavorito } = props;
+  const { songs, selectedSong, userLogin, mostrarFavoritos } = useSelector(
+    (state) => state.songsReducer
+  );
   const dispatch = useDispatch();
 
   const songtSelect = async (idSong) => {
@@ -22,12 +20,32 @@ const ListaCancionesComponent = (props) => {
     }
   };
 
+  const obtenerCancionesFiltradas = () => {
+    if (mostrarFavoritos) {
+      return songs.filter((song) => userLogin?.favoritas.includes(song._id));
+    }
+    return songs;
+  };
+
+  const cancionesFiltradas = obtenerCancionesFiltradas();
+
   return (
     <div>
       <h2 className="hero-title">Listado de canciones</h2>
+      {!userLogin ? (
+        ""
+      ) : !mostrarFavoritos ? (
+        <button className="edit-button" onClick={() => dispatch(setOptionFavorites(true))}>
+          Favoritos
+        </button>
+      ) : (
+        <button className="edit-button" onClick={() => dispatch(setOptionFavorites(false))}>
+          Listado
+        </button>
+      )}
       <div className="grip">
-        {songs && songs.length > 0 ? (
-          songs.map((p, idx) => (
+        {cancionesFiltradas && cancionesFiltradas.length > 0 ? (
+          cancionesFiltradas.map((p, idx) => (
             <div
               key={idx}
               className="card-songs"
@@ -40,8 +58,8 @@ const ListaCancionesComponent = (props) => {
                   className="favorite-icon"
                   onClick={(e) => {
                     handleFavorito(p._id);
-                    console.log("Clic en corazón")
-                    e.stopPropagation();  
+                    console.log("Clic en corazón");
+                    e.stopPropagation();
                   }}
                 />
               </div>
@@ -66,8 +84,10 @@ const ListaCancionesComponent = (props) => {
               </div>
             </div>
           ))
+        ) : !mostrarFavoritos ? (
+          <span className="text-favorite">Loading...</span>
         ) : (
-          <div>Loading...</div>
+          <span className="text-favorite">No ahi favoritos en la lista</span>
         )}
       </div>
     </div>

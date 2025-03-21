@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router";
-import { setSelectSong, setUser } from "../pages/ListadoPage/ListadoAction";
+import { setOptionFavorites, setSelectSong, setUser } from "../pages/ListadoPage/ListadoAction";
 import { useDispatch, useSelector } from "react-redux";
 import { setOptionUpdate } from "../pages/PerfilPage/PerfilAction";
 
@@ -17,13 +17,20 @@ const MenuOptionComponent = () => {
   const goHome = () => {
     navigate("/");
 
-    setTimeout(() => dispatch(setSelectSong(null)), 0);
-    setTimeout(() => dispatch(setOptionUpdate(false)), 0);
+    setTimeout(() => {
+      dispatch(setSelectSong(null));
+      dispatch(setOptionUpdate(false));
+      dispatch(setOptionFavorites(false));
+    }, 10);
+  
   };
   const goListado = () => {
     navigate("/listado");
-    setTimeout(() => dispatch(setSelectSong(null)), 0);
-    setTimeout(() => dispatch(setOptionUpdate(false)), 0);
+    setTimeout(() => {
+      dispatch(setSelectSong(null));
+      dispatch(setOptionUpdate(false));
+      dispatch(setOptionFavorites(false));
+    }, 10);
   };
   const goPerfil = () => {
     if (userLogin !== null) {
@@ -31,8 +38,11 @@ const MenuOptionComponent = () => {
     } else {
       navigate("/login");
     }
-    setTimeout(() => dispatch(setSelectSong(null)), 0);
-    setTimeout(() => dispatch(setOptionUpdate(false)), 0);
+    setTimeout(() => {
+      dispatch(setSelectSong(null));
+      dispatch(setOptionUpdate(false));
+      dispatch(setOptionFavorites(false));
+    }, 10);
   };
   const goCerrarSesion = () => {
     localStorage.removeItem("token");
@@ -40,19 +50,29 @@ const MenuOptionComponent = () => {
     localStorage.removeItem("nombre");
 
     navigate("/");
-    setTimeout(() => dispatch(setSelectSong(null)), 0);
-    setTimeout(() => dispatch(setUser(null)), 0);
-    setTimeout(() => dispatch(setOptionUpdate(false)), 0);
+
+    ssetTimeout(() => {
+      dispatch(setUser(null))
+      dispatch(setSelectSong(null));
+      dispatch(setOptionUpdate(false));
+      dispatch(setOptionFavorites(false));
+    }, 10);
   };
   const goInicioSesion = () => {
     navigate("/login");
-    setTimeout(() => dispatch(setSelectSong(null)), 0);
-    setTimeout(() => dispatch(setOptionUpdate(false)), 0);
+    setTimeout(() => {
+      dispatch(setSelectSong(null));
+      dispatch(setOptionUpdate(false));
+      dispatch(setOptionFavorites(false));
+    }, 10);
   };
   const goContacto = () => {
     navigate("/contacto");
-    setTimeout(() => dispatch(setSelectSong(null)), 0);
-    setTimeout(() => dispatch(setOptionUpdate(false)), 0);
+    setTimeout(() => {
+      dispatch(setSelectSong(null));
+      dispatch(setOptionUpdate(false));
+      dispatch(setOptionFavorites(false));
+    }, 10);
   };
 
   return (
