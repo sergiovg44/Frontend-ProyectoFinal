@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import MenuOptionComponent from "../../components/MenuOptionComponent";
+import { toast } from "react-toastify";
+import { contactEmail } from "../../core/services/ProductFetch";
 
 const ContactoPage = () => {
   const [formData, setFormData] = useState({
@@ -33,6 +35,32 @@ const ContactoPage = () => {
   
     return true; 
   };
+
+  const contactHandler = async () => {
+    const isValid = checkFields(formData);
+    if (!isValid) return;
+  
+    try {
+      const response = await contactEmail(formData);
+  
+      if (!response.success) {
+        toast.error("Error: " + response.message);
+        return;
+      }
+  
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+  
+      toast.success("Mensaje enviado con éxito");
+    } catch (error) {
+      toast.error("Hubo un error al enviar el mensaje");
+    }
+  };
+
 
   const handlerContact = (name, value) => {
     setFormData({
@@ -90,7 +118,7 @@ const ContactoPage = () => {
             />
             <span>Mensaje</span>
           </label>
-          <button className="submit">Contacto</button>
+          <button className="submit" onClick={contactHandler}>Contacto</button>
         </div>
       </div>
     </div>

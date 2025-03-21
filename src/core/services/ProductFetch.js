@@ -14,16 +14,9 @@ export const createUser = async (newUser) => {
       },
       body: JSON.stringify(newUser),
     });
-
-    let result;
-    try {
-      result = await res.json();
-    } catch (jsonError) {
-      throw new Error(
-        `Error en la respuesta del servidor (no es JSON): ${jsonError.message}`
-      );
-    }
-
+  
+   const result = await res.json();
+    
     if (!res.ok) {
       throw new Error(result.message || `Error: ${res.status}`);
     }
@@ -266,3 +259,25 @@ export const deleteUser = async (dispatch, navigate) => {
     return { success: false, message: error.message };
   }
 };
+
+export const contactEmail = async (data) => {
+  try {
+
+    const res = await fetch(`${url}/user/contact`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    const result = await res.json();
+   
+    if (!res.ok) {
+      return { success: false, message: result.message };
+    }
+    return { success: true, message: "Se ha enviado la información correctamente" }
+  } catch (error) {
+    return { success: false, message: result.message };
+  }
+}
