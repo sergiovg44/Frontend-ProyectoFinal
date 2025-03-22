@@ -4,7 +4,7 @@
 
 Este es el frontend de una aplicación web musical, donde los usuarios pueden explorar una
 lista de canciones y consultar los detalles de cada una. La plataforma permite el registro
-y login de usuarios, quienes podrán agregar canciones a sus favoritos,
+y login de usuarios, quienes podrán agregar o eliminar canciones de sus favoritos,
 editar su perfil (incluyendo imagen de usuario) y enviar mensajes mediante un formulario de contacto.
 
 Funciones principales:
@@ -36,7 +36,7 @@ Frontend
 
 git clone https://github.com/sergiovg44/Frontend-ProyectoFinal.git
 
-Bakend
+Backend
 
 git clone https://github.com/sergiovg44/Backend-ProyectoFinal.git
 
@@ -69,11 +69,11 @@ Los endpoints que utilizamos en este proyecto son los siguientes:
 | DELETE | /user                            | Eliminar cuenta de usuario             |  Sí           |
 
 
-### 5. Autor
+## Autor
 
 - Sergio
 
-### 6. Perfil de github
+## Perfil de github
 
 - sergiovg44
 

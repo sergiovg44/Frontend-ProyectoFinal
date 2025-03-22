@@ -22,7 +22,7 @@ export const createUser = async (newUser) => {
 
     return result;
   } catch (error) {
-    console.error("Error al registrar el usuario:", error);
+
     return { success: false, message: error.message };
   }
 };
@@ -52,7 +52,7 @@ export const loginUser = async (newUser) => {
       return { success: true, message: "Inicio de sesión exitoso" };
   
     } catch (error) {
-      console.error("Error en la solicitud:", error);
+
       return { success: false, message: "Hubo un problema al iniciar sesión. Inténtalo más tarde." };
     }
   };
@@ -66,7 +66,7 @@ export const loginUser = async (newUser) => {
       const result = await res.json();
       return { success: true, data: result.data }
     } catch (error) {
-      console.error("Error al obtener las canciones:", error);
+
       return { success: false, message: error.message };
     }
   };
@@ -80,7 +80,7 @@ export const getSongId = async (songId) => {
     const result = await res.json();
     return result.data;
   } catch (error) {
-    console.error("Error al obtener la cancion:", error);
+
     return { success: false, message: error.message };
   }
 };
@@ -146,7 +146,7 @@ export const getUserId = async (dispatch, navigate) => {
     }
     return { success: true, data: result.data }
   } catch (error) {
-    console.error("Error al obtener el usuario:", error);
+
     return { success: false, message: error.message };
   }
 };
@@ -181,7 +181,7 @@ export const updateUser = async (modifiUser ,dispatch, navigate) => {
     }
     return { success: true, data: result.data }
   } catch (error) {
-    console.error("Error al actualizar el usuario:", error);
+
     return { success: false, message: error.message };
   }
 };
@@ -219,7 +219,7 @@ export const updateImage = async (file ,dispatch, navigate) => {
     return { success: true, data: result.data };
 
   } catch (error) {
-    console.error("Error al subir imagen:", error);
+
     return { success: false, message: error.message };
   }
 }
@@ -253,7 +253,7 @@ export const deleteUser = async (dispatch, navigate) => {
     }
     return { success: true }
   } catch (error) {
-    console.error("Error al obtener el usuario:", error);
+
     return { success: false, message: error.message };
   }
 };
