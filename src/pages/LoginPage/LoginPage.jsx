@@ -89,8 +89,6 @@ const LoginPage = () => {
   };
 
   const loginHandler = async () => {
-    const isValid = checkFields(newUser);
-    if (!isValid) return;
 
     try {
       const response = await loginUser(newUser);
@@ -104,7 +102,7 @@ const LoginPage = () => {
         password: "",
       });
 
-      console.log("Inicio de sesión exitoso");
+      toast.success("Inicio de sesión exitoso");
       goHome();
     } catch (error) {
       toast.error("Hubo un error al iniciar sesión: " + error.message);
@@ -114,6 +112,7 @@ const LoginPage = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("id");
     localStorage.removeItem("nombre");
+    changeRegister(false)
   }, []);
 
   return (

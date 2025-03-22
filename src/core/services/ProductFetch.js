@@ -1,12 +1,11 @@
 import { handleTokenExpired } from "../../utils/utils";
 
-// Esta es la url basica ya dependiendo de cada peticion cambiara el final
+
 const url = `http://localhost:3000`;
 
 export const createUser = async (newUser) => {
   try {
-    console.log("Enviando usuario:", newUser);
-
+    
     const res = await fetch(`${url}/user/register`, {
       method: "POST",
       headers: {
@@ -94,7 +93,7 @@ export const toggleFavourite = async (idSong, method , dispatch, navigate) => {
     }
 
     const res = await fetch(`${url}/user/favourite/${idSong}`, {
-      method: method, // O "PUT" según tu ruta
+      method: method, 
       headers: {
         "Content-Type": "application/json",
         "auth-token": token, 
@@ -106,7 +105,6 @@ export const toggleFavourite = async (idSong, method , dispatch, navigate) => {
       return { success: false, expired: true, message: "Token expirado" };
     }
     const result = await res.json();
-    console.log(" Respuesta del backend:", result);
 
     if (!res.ok) {
       return { success: false, message: result.message };
@@ -115,7 +113,7 @@ export const toggleFavourite = async (idSong, method , dispatch, navigate) => {
    return { success: true, message: result.message, data: result.data };
 
   } catch (error) {
-    console.error("Error al agregar favorito:", error);
+
     return { success: false, message: "Error de red o del servidor." };
   }
 };
@@ -138,7 +136,7 @@ export const getUserId = async (dispatch, navigate) => {
     });
 
     if (res.status === 401) {
-      //Esto es para cuando caduca el token
+
       handleTokenExpired(dispatch, navigate)
       return { success: false, expired: true, message: "Token expirado" };
     }
@@ -173,7 +171,7 @@ export const updateUser = async (modifiUser ,dispatch, navigate) => {
     });
 
     if (res.status === 401) {
-      //Esto es para cuando caduca el token
+
       handleTokenExpired(dispatch, navigate)
       return { success: false, expired: true, message: "Token expirado" };
     }
@@ -245,7 +243,7 @@ export const deleteUser = async (dispatch, navigate) => {
     });
 
     if (res.status === 401) {
-      //Esto es para cuando caduca el token
+
       handleTokenExpired(dispatch, navigate)
       return { success: false, expired: true, message: "Token expirado" };
     }

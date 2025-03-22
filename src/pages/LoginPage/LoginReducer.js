@@ -7,7 +7,7 @@ const initialState = {
 
 
 const changeOptionRegister = (state = initialState, action) => {
-    // console.log("Reducer ejecutado con action:", action)
+
     switch (action.type) {
         case OPTION_REGISTER:
             return{

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import MenuOptionComponent from "../../components/MenuOptionComponent";
-import { getUserId } from "../../core/services/ProductFetch";
 import { setUser } from "../ListadoPage/ListadoAction";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
@@ -33,7 +32,6 @@ const HomePage = () => {
   useEffect(() => {
     if (songs.length > 0 && randomSongs.length === 0) {
       obtenerCancionesAleatorias();
-      console.log("useEffect de songs");
     }
     }, [songs]);
 

@@ -20,7 +20,7 @@ export const transformDate = (date) => {
   const [year, month, day] = dateFormatted.split("-");
   return `${day}/${month}/${year}`;
 };
-
+// Esta función la empleo para borrar los datos del localStorage cuando el token expira
 export const handleTokenExpired = (dispatch, navigate) => {
   localStorage.removeItem("token");
   localStorage.removeItem("id");
@@ -48,8 +48,8 @@ export const loadSongs = async (dispatch) => {
     }
 };
 
-
-export const verificarTokenPeriodicamente = (dispatch, navigate, intervaloMs = 60000) => {
+//Esta funcion la utilizo para que una vez iniciada sesion cada cierto tiempo compruebe que el token sigue activo
+export const verificarTokenPeriodicamente = (dispatch, navigate, intervaloMs = 300000) => {
   const intervalId = setInterval(async () => {
     const token = localStorage.getItem("token");
     if (!token) return;

@@ -1,132 +1,125 @@
 .card-detail {
-    display: flex;
-    flex-direction: row; 
-    align-items: center;
-    position: relative;
-    min-width: 70%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  min-width: 70%;
 
-    gap: 6rem; 
-    background-color: #1a1a1a;
-    padding: 3rem 2rem;
-    max-inline-size: 80%;
-    margin: auto;
-    border-radius: 20px;
-    border: 1px solid #00bfff;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  gap: 6rem;
+  background-color: #1a1a1a;
+  padding: 3rem 2rem;
+  max-inline-size: 80%;
+  margin: auto;
+  border-radius: 20px;
+  border: 1px solid #00bfff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 
+  color: white;
+  flex-wrap: wrap;
+}
+.box-img {
+  display: flex;
+  justify-content: center;
+}
 
-    color: white;
-    flex-wrap: wrap; 
-  }
-  .box-img {
+.img-detail {
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+}
+.song-info {
+  text-align: center;
+  padding-block-end: 5rem;
+}
 
-    display: flex;
+.title-detail {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #00bfff;
+  margin-bottom: 1rem;
+  padding-block-end: 3rem;
+}
+
+.text-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+.name-song {
+  font-size: 1.5rem;
+  font-style: italic;
+  font-weight: bold;
+}
+.detail-artist {
+  font-style: oblique;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.popularity-wrapper {
+  position: absolute;
+  bottom: 1rem;
+  right: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+  color: #00bfff;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.popularity-bar {
+  width: 150px;
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid #00bfff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  background-color: #00bfff;
+  width: 0%;
+  transition: width 0.5s ease-in-out;
+}
+
+.favorite-icon {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.content-center {
+  height: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (width < 1250px) {
+  .card-detail {
+    gap: 2rem;
     justify-content: center;
   }
-  
+}
+@media (width < 845px) {
   .img-detail {
-    max-width: 300px;
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8); 
-  }
-  .song-info {
-    text-align: center;    
-    padding-block-end: 5rem;
-
-    
-  }
-  
-  .title-detail {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #00bfff; 
-    margin-bottom: 1rem;
-    padding-block-end: 3rem;
-  }
-  
-  .text-detail{
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    align-items: flex-start;
-  }
-  .name-song{
-    font-size: 1.5rem;
-    font-style: italic;
-    font-weight: bold;
-    
-  }
-  .detail-artist{
-    font-style: oblique;
-    font-size: 1.2rem;
-    font-weight: bold;
-  }
-
-  .popularity-wrapper {
-    position: absolute;
-    bottom: 1rem;
-    right: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 0.5rem;
-    color: #00bfff;
-    font-size: 0.9rem;
-    font-weight: bold;
-  }
-  
-  .popularity-bar {
-    width: 150px;
-    height: 10px;
-    background-color: rgba(255, 255, 255, 0.2);
-    border: 1px solid #00bfff;
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  
-  .bar-fill {
-    height: 100%;
-    background-color: #00bfff;
-    width: 0%;
-    transition: width 0.5s ease-in-out;
-  }
-
-  .favorite-icon {
-    position: absolute;
-    top: 1rem;
-    right: 1.5rem;
-    width: 30px;
-    height: 30px;
-    cursor: pointer; 
-  }
-
-
-  .content-center{
-    height: 75%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-
-  @media (width < 1250px) {
-    .card-detail{
-      gap: 2rem;
-      justify-content: center;
-    }
- 
-}
-  @media (width < 845px) {
-
-    .img-detail {
-      width: 75%;
+    width: 75%;
   }
 }
-  @media (width < 450px) {
-
-    .img-detail {
-      width: 75%;
+@media (width < 450px) {
+  .img-detail {
+    width: 75%;
+  }
+  .card-detail {
+    margin-inline: 1rem;
   }
 }

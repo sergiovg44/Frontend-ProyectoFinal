@@ -16,7 +16,7 @@ const PerfilPage = () => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
   const { optionUpdate } = useSelector((state) => state.optionUpdateReducer);
-  const { songs, selectedSong, userLogin } = useSelector(
+  const { userLogin } = useSelector(
     (state) => state.songsReducer
   );
   const [modifiUser, setModifiUser] = useState({
@@ -24,7 +24,6 @@ const PerfilPage = () => {
     apellidos: "",
     password: "",
   });
-  const [modifiUserImage, setModifiUserImage] = useState();
 
   const checkFields = (user) => {
     if (user.nombre.length < 3) {
@@ -76,8 +75,6 @@ const PerfilPage = () => {
   const handleImageChange = (file) => {
     if (!file) return;
 
-    //Asi podemos validar que sea un tipo imagen ya que el tipo me los manda asi
-    //para comprobarlo
     const validTypes = ["image/jpeg", "image/png", "image/webp"];
     if (!validTypes.includes(file.type)) {
       toast.info("Solo se permiten imágenes JPG, PNG o WEBP.");
@@ -97,14 +94,14 @@ const PerfilPage = () => {
       const response = await updateImage(file, dispatch, navigate);
 
       if (!response.success) {
-        console.error("Error: " + response.message);
+        toast.error("Error: " + response.message);
         return;
       }
 
       toast.success("Imagen actualizada exitosamente");
       await loadUser(dispatch, navigate, setUser);
     } catch (error) {
-      console.error("Hubo un error al subir la imagen: " + error.message);
+      toast.error("Hubo un error al subir la imagen: " + error.message);
     }
   };
 
@@ -136,20 +133,18 @@ const PerfilPage = () => {
       setModifiUser({
         nombre: userLogin.nombre,
         apellidos: userLogin.apellidos,
-        password: "", // Vacía por seguridad
+        password: "", 
       });
     }
   }, [userLogin]);
 
   useEffect(() => {
     const intervalId = verificarTokenPeriodicamente(dispatch, navigate);
-    console.log(userLogin);
     return () => clearInterval(intervalId);
   }, [dispatch, navigate]);
 
   useEffect(() => {
     loadUser(dispatch, navigate, setUser);
-    console.log("primera carga pagina perfil");
   }, []);
 
   return (
@@ -186,72 +181,90 @@ const PerfilPage = () => {
               </div>
 
               <div className="profile-info">
-                <div className="info-row">
-                  <span className="label">Nombre</span>
-                  {!optionUpdate ? (
-                    <span className="value">{userLogin.nombre}</span>
-                  ) : (
-                    <input
-                      className="input"
-                      type="text"
-                      value={modifiUser.nombre}
-                      name="nombre"
-                      onChange={(e) =>
-                        handlerRegisterUser(e.target.name, e.target.value)
-                      }
-                    />
-                  )}
-                </div>
-                <div className="info-row">
-                  <span className="label">Apellidos</span>
-                  {!optionUpdate ? (
-                    <span className="value">{userLogin.apellidos}</span>
-                  ) : (
-                    <input
-                      className="input"
-                      type="text"
-                      value={modifiUser.apellidos}
-                      name="apellidos"
-                      onChange={(e) =>
-                        handlerRegisterUser(e.target.name, e.target.value)
-                      }
-                    />
-                  )}
-                </div>
-                <div className="info-row">
-                  <span className="label">Email</span>
-                  {!optionUpdate ? (
-                    <span className="value">{userLogin.email}</span>
-                  ) : (
-                    <input
-                      className="input"
-                      type="text"
-                      value={userLogin.email}
-                      name="email"
-                      disabled
-                    />
-                  )}
-                </div>
                 {!optionUpdate ? (
-                  ""
-                ) : (
                   <div className="info-row">
-                    <span className="label">Contraseña</span>
-                    <input
-                      className="input"
-                      type="text"
-                      placeholder="Nueva Contraseña"
-                      name="password"
-                      value={modifiUser.password}
-                      onChange={(e) =>
-                        handlerRegisterUser(e.target.name, e.target.value)
-                      }
-                    />
+                    <span className="label">Nombre</span>
+                    <span className="value">{userLogin.nombre}</span>
+                  </div>
+                ) : (
+                  <div className="input-container">
+                    <label>
+                      <input
+                        className="input"
+                        type="text"
+                        value={modifiUser.nombre}
+                        name="nombre"
+                        onChange={(e) =>
+                          handlerRegisterUser(e.target.name, e.target.value)
+                        }
+                      />
+                      <span>Nombre</span>
+                    </label>
+                  </div>
+                )}
+
+                {!optionUpdate ? (
+                  <div className="info-row">
+                    <span className="label">Apellidos</span>
+                    <span className="value">{userLogin.apellidos}</span>
+                  </div>
+                ) : (
+                  <div className="input-container">
+                    <label>
+                      <input
+                        className="input"
+                        type="text"
+                        value={modifiUser.apellidos}
+                        name="apellidos"
+                        onChange={(e) =>
+                          handlerRegisterUser(e.target.name, e.target.value)
+                        }
+                      />
+                      <span>Apellidos</span>
+                    </label>
+                  </div>
+                )}
+
+                {!optionUpdate ? (
+                  <div className="info-row">
+                    <span className="label">Email</span>
+                    <span className="value">{userLogin.email}</span>
+                  </div>
+                ) : (
+                  <div className="input-container">
+                    <label>
+                      <input
+                        className="input email"
+                        type="text"
+                        value={userLogin.email}
+                        name="email"
+                        disabled
+                      />
+                      <span>Email</span>
+                    </label>
+                  </div>
+                )}
+
+                {optionUpdate && (
+                  <div className="input-container">
+                    <label>
+                      <input
+                        className="input"
+                        type="text"
+                        placeholder="Nueva Contraseña"
+                        name="password"
+                        value={modifiUser.password}
+                        onChange={(e) =>
+                          handlerRegisterUser(e.target.name, e.target.value)
+                        }
+                      />
+                      <span>Contraseña</span>
+                    </label>
                   </div>
                 )}
               </div>
               {!optionUpdate ? (
-                <div>
+                <div className="container-button">
                   <button
                     className="edit-button"
                     onClick={() => dispatch(setOptionUpdate(true))}
@@ -260,8 +273,8 @@ const PerfilPage = () => {
                   </button>
                 </div>
               ) : (
-                <div>
-                  <div>
+
+                  <div className="container-button">
                     <button
                       className="edit-button"
                       onClick={() => modifiHandler()}
@@ -281,7 +294,7 @@ const PerfilPage = () => {
                       Cancelar
                     </button>
                   </div>
-                </div>
+
               )}
             </div>
           </div>

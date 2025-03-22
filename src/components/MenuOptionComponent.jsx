@@ -1,5 +1,5 @@
-import React from "react";
-import { useLocation, useNavigate } from "react-router";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router";
 import { setOptionFavorites, setSelectSong, setUser } from "../pages/ListadoPage/ListadoAction";
 import { useDispatch, useSelector } from "react-redux";
 import { setOptionUpdate } from "../pages/PerfilPage/PerfilAction";
@@ -7,11 +7,9 @@ import { setOptionUpdate } from "../pages/PerfilPage/PerfilAction";
 const MenuOptionComponent = () => {
   const { userLogin } = useSelector((state) => state.songsReducer);
 
-  let location = useLocation();
+
   const dispatch = useDispatch();
 
-  const nombre = localStorage.getItem("nombre");
-  const { pathname } = location;
   let navigate = useNavigate();
 
   const goHome = () => {
@@ -51,10 +49,13 @@ const MenuOptionComponent = () => {
 
     navigate("/");
 
-    ssetTimeout(() => {
+    setTimeout(() => {
       dispatch(setUser(null))
       dispatch(setSelectSong(null));
       dispatch(setOptionUpdate(false));
+
+    }, );
+    setTimeout(() => {
       dispatch(setOptionFavorites(false));
     }, 10);
   };
@@ -75,6 +76,7 @@ const MenuOptionComponent = () => {
     }, 10);
   };
 
+
   return (
     <div>
       <div className="contenedor-botones">
@@ -86,7 +88,7 @@ const MenuOptionComponent = () => {
           <button onClick={goPerfil}>Mi perfil</button>
         </div>
         <div className="fila">
-          {userLogin !== null ? (
+          {userLogin ? (
             <button onClick={goCerrarSesion}>Cerrar sesion</button>
           ) : (
             <button onClick={goInicioSesion}>Iniciar Sesion</button>

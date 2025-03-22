@@ -18,7 +18,7 @@ const songsReducer = (state = initialState, action) => {
     case SELECT_SONG:
       return {
         ...state,
-        // Guardamos la cancion seleccionado
+
         selectedSong: action.payload,
       };
 

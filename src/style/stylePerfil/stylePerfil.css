@@ -32,33 +32,57 @@
   cursor: pointer;
 }
 
-
-.profile-info .info-row {
+.info-row {
   display: flex;
   justify-content: space-between;
   padding: 1rem 0;
   border-bottom: 1px solid #eee;
 }
+.input-container {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+  border-bottom: 1px solid #eee;
+}
 
-.label{
+.profile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
   font-weight: bold;
 }
 
 .edit-button {
-  margin-top: 2rem;
   padding: 0.75rem 1.5rem;
   cursor: pointer;
   font-weight: bold;
   border-radius: 10px;
   color: #fff;
-  transform: .3s ease;
+  transform: 0.3s ease;
   background-color: #00bfff;
 }
 
-.edit-button:hover{
-  background-color: #0995c4
+.edit-button:hover {
+  background-color: #0995c4;
 }
 
-.input-file{
+.input-file {
   display: none;
+}
+
+.container-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+@media (width < 600px) {
+  .profile-card {
+    margin-inline: 1rem;
+  }
 }

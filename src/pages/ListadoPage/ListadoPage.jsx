@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import MenuOptionComponent from "../../components/MenuOptionComponent";
-import { getSongs, toggleFavourite } from "../../core/services/ProductFetch";
+import { toggleFavourite } from "../../core/services/ProductFetch";
 import { useDispatch, useSelector } from "react-redux";
-import { setSongs, setUser } from "./ListadoAction";
+import {  setUser } from "./ListadoAction";
 import ListaCancionesComponent from "../../components/ListaCancionesComponent";
 import DetalleSongComponent from "../../components/DetalleSongComponent";
 import heartFilled from "../../../src/assets/corazon-relleno.png";
@@ -18,7 +18,7 @@ import { toast } from "react-toastify";
 const ListadoPage = () => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
-  const { songs, selectedSong, userLogin } = useSelector(
+  const { selectedSong, userLogin } = useSelector(
     (state) => state.songsReducer
   );
 
@@ -33,7 +33,7 @@ const ListadoPage = () => {
     const response = await toggleFavourite(idSong, method, dispatch, navigate);
 
     if (response.success) {
-      dispatch(setUser(response.data)); // Actualiza usuario en Redux
+      dispatch(setUser(response.data)); 
     }
   };
 
@@ -47,7 +47,7 @@ const ListadoPage = () => {
 
   useEffect(() => {
     const intervalId = verificarTokenPeriodicamente(dispatch, navigate);
-    console.log(userLogin);
+
     return () => clearInterval(intervalId);
   }, [dispatch, navigate]);
 

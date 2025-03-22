@@ -4,20 +4,15 @@
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  background-color: #121212;
   margin: 0;
-  background-image: url('https://images.unsplash.com/photo-1518972559570-7cc1309f3229'); 
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
 }
 
 .form {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  max-width: 350px;
+  width: 60%;
+  max-width: 400px;
   padding: 20px;
   border-radius: 20px;
   background-color: #1a1a1a;
@@ -27,75 +22,85 @@
   border: 1px solid #00bfff;
 }
 
-  
-  .title {
-    font-size: 28px;
-    font-weight: 600;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #00bfff;
-  }
- 
-  .signin a {
-    color: #00bfff;
-  }
-  
-  .form label {
-    position: relative;
-  }
-  
-  .form label .input {
-    background-color: #333;
-    color: #fff;
-    width: 100%;
-    padding: 20px 05px 05px 20px;
-    outline: 0;
-    border: 1px solid rgba(105, 105, 105, 0.397);
-    border-radius: 10px;
-    box-sizing: border-box;
-  }
-  
-  .form label .input + span {
-    color: rgba(255, 255, 255, 0.5);
-    position: absolute;
-    left: 10px;
-    top: 0px;
-    font-size: 0.9em;
-    cursor: text;
-    transition: 0.3s ease;
-  }
-  
+.title {
+  font-size: 28px;
+  font-weight: 600;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #00bfff;
+}
 
-  .form label .input:valid + span {
-    color: #00bfff;
-    top: 5px;
-    font-size: 0.7em;
-    font-weight: 600;
-  }
-  
-  .input {
-    font-size: medium;
-  }
-  
-  .submit {
+.signin {
+  color: #00bfff;
+}
 
-    padding: 10px;
-    border-radius: 10px;
-    color: #fff;
-    transform: .3s ease;
-    background-color: #00bfff;
-  }
-  
-  .submit:hover {
-    background-color: #00bfff96;
-  }
-  
-  .change-register {
-    cursor: pointer;
-    color: #00bfff;
-  }
-.text-login-botton{
+label {
+  position: relative;
+}
+
+.input {
+  background-color: #333;
+  color: #fff;
+  width: 100%;
+  padding: 20px 05px 05px 20px;
+  outline: 0;
+  border: 1px solid rgba(105, 105, 105, 0.397);
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.input + span {
+  color: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  left: 10px;
+  top: 0px;
+  font-size: 0.9em;
+  cursor: text;
+  transition: 0.3s ease;
+}
+
+.input + span {
+  color: #00bfff;
+  top: 5px;
+  font-size: 0.7em;
+  font-weight: 600;
+}
+
+.input {
+  font-size: medium;
+  flex: 1;
+}
+
+.submit {
+  padding: 10px;
+  border-radius: 10px;
+  color: #fff;
+  transform: 0.3s ease;
+  background-color: #00bfff;
+}
+
+.submit:hover {
+  background-color: #00bfff96;
+}
+
+.change-register {
+  cursor: pointer;
+  color: #00bfff;
+}
+.text-login-botton {
   text-align: center;
+}
+.message {
+  text-align: center;
+}
+
+@media (width < 1000px) {
+  .contenedor-login {
+    justify-content: start;
+  }
+  .form {
+    margin-block-start: 7rem;
+  }
 }

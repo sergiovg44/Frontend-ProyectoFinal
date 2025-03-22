@@ -1,6 +1,5 @@
 .home-container {
   height: 100vh;
-  font-family: "Poppins", sans-serif;
   color: #fff;
   display: flex;
   align-items: center;
@@ -100,9 +99,7 @@
     min-block-size: 30%;
   }
   .featured-songs {
-
     gap: rem;
-
   }
 }
 

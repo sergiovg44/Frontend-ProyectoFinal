@@ -8,7 +8,7 @@ import { getSongId } from "../core/services/ProductFetch";
 
 const ListaCancionesComponent = (props) => {
   const { iconHeart, handleFavorito } = props;
-  const { songs, selectedSong, userLogin, mostrarFavoritos } = useSelector(
+  const { songs, userLogin, mostrarFavoritos } = useSelector(
     (state) => state.songsReducer
   );
   const dispatch = useDispatch();
@@ -58,7 +58,6 @@ const ListaCancionesComponent = (props) => {
                   className="favorite-icon"
                   onClick={(e) => {
                     handleFavorito(p._id);
-                    console.log("Clic en corazón");
                     e.stopPropagation();
                   }}
                 />
@@ -87,7 +86,7 @@ const ListaCancionesComponent = (props) => {
         ) : !mostrarFavoritos ? (
           <span className="text-favorite">Loading...</span>
         ) : (
-          <span className="text-favorite">No ahi favoritos en la lista</span>
+          <span className="text-favorite">No hay favoritos en la lista</span>
         )}
       </div>
     </div>

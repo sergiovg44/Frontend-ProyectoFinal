@@ -51,7 +51,7 @@ const DetalleSongComponent = (props) => {
 
           <span>{transformDate(selectedSong.release_date)}</span>
         </div>
-        <div>
+        <div className="container-button">
           <button
             className="edit-button"
             onClick={() => dispatch(setSelectSong(null))}

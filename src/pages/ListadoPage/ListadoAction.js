@@ -27,5 +27,5 @@ export const setUser = (userData) => {
 
   export const setOptionFavorites = (value) => ({
     type: SET_OPTION_FAVORITES,
-    payload: value, // true o false
+    payload: value, 
   });
