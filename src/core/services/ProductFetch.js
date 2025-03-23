@@ -43,9 +43,9 @@ export const loginUser = async (newUser) => {
         return { success: false, message: result.message || "Usuario o contraseña incorrectos." };
       }
   
-      const { id, token, nombre } = result.data;
+      const { _id, token, nombre } = result.data;
   
-      localStorage.setItem("id", id);
+      localStorage.setItem("id", _id);
       localStorage.setItem("token", token);
       localStorage.setItem("nombre", nombre);
   

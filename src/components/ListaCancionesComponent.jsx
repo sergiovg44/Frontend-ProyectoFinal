@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setOptionFavorites,
@@ -12,6 +12,7 @@ const ListaCancionesComponent = (props) => {
     (state) => state.songsReducer
   );
   const dispatch = useDispatch();
+  const [search, setSearch] = useState("");
 
   const songtSelect = async (idSong) => {
     if (idSong) {
@@ -22,27 +23,66 @@ const ListaCancionesComponent = (props) => {
 
   const obtenerCancionesFiltradas = () => {
     if (mostrarFavoritos) {
-      return songs.filter((song) => userLogin?.favoritas.includes(song._id));
+      return songs.filter((song) => userLogin.favoritas.includes(song._id));
+    }
+  
+    if (search.trim()) {
+      const formatSearch = search.toLowerCase();
+      const cancionesFiltradas = songs.filter((song) => {
+        const coincidenciaNombre = song.song_name.toLowerCase().includes(formatSearch);
+        if (coincidenciaNombre) {
+          return true; 
+        }
+        const coincidenciaArtista = song.artist_name.join(" ").toLowerCase().includes(formatSearch);
+        if (coincidenciaArtista) {
+          return true; 
+        }
+        return false; 
+      });
+      return cancionesFiltradas;
     }
     return songs;
   };
+  
 
   const cancionesFiltradas = obtenerCancionesFiltradas();
 
   return (
     <div>
       <h2 className="hero-title">Listado de canciones</h2>
-      {!userLogin ? (
-        ""
-      ) : !mostrarFavoritos ? (
-        <button className="edit-button" onClick={() => dispatch(setOptionFavorites(true))}>
-          Favoritos
-        </button>
-      ) : (
-        <button className="edit-button" onClick={() => dispatch(setOptionFavorites(false))}>
-          Listado
-        </button>
-      )}
+      <div className="conten-search">
+        {!userLogin ? (
+          ""
+        ) : !mostrarFavoritos ? (
+          <button
+            className="edit-button"
+            onClick={() => dispatch(setOptionFavorites(true))}
+          >
+            Favoritos
+          </button>
+        ) : (
+          <button
+            className="edit-button"
+            onClick={() => dispatch(setOptionFavorites(false))}
+          >
+            Listado
+          </button>
+        )}
+        {
+          !mostrarFavoritos?(
+            <input
+              type="text"
+              className="input search "
+              placeholder="Buscar canciones..."
+              value={search} 
+              onChange={(e) => setSearch(e.target.value)}
+            />
+        
+          ):(
+            ""
+          )
+        }
+      </div>
       <div className="grip">
         {cancionesFiltradas && cancionesFiltradas.length > 0 ? (
           cancionesFiltradas.map((p, idx) => (
@@ -84,6 +124,10 @@ const ListaCancionesComponent = (props) => {
             </div>
           ))
         ) : !mostrarFavoritos ? (
+          search !== ""?(
+            <span className="text-favorite">No se encuentran coincidencias</span>
+            
+          ):
           <span className="text-favorite">Loading...</span>
         ) : (
           <span className="text-favorite">No hay favoritos en la lista</span>
