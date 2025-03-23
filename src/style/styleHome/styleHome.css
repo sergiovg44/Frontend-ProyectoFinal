@@ -1,0 +1,147 @@
+.home-container {
+  height: 100vh;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1.5rem;
+}
+
+.overlay-content {
+  min-block-size: 75%;
+  text-align: center;
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 2rem;
+  margin-block-start: 2.5rem;
+  border: 1px solid #00bfff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.hero-title {
+  font-size: 3rem;
+  max-width: 75%;
+  margin-inline: auto;
+  margin-block-start: 1rem;
+  margin-block-end: 3.5rem;
+  text-shadow: 0 0 10px #00f0ff;
+  font-style: italic;
+}
+
+.explore-btn {
+  padding: 0.8rem 1.5rem;
+  cursor: pointer;
+  border: 1px solid #ffffff;
+  margin-block-end: 2.5rem;
+}
+
+.explore-btn:hover {
+  border: 1px solid #00bfff;
+}
+
+.featured-songs {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.song-mini-card {
+  width: 200px;
+  height: 250px;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 0.5rem;
+  border: 1px solid #00f0ff;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+}
+
+.mini-card-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.mini-card-text {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 0.5rem;
+  text-align: center;
+  word-break: break-word;
+}
+
+@media (width < 800px) {
+  .home-container {
+    margin-block-start: 3.5rem;
+    align-items: flex-start;
+  }
+  .hero-title {
+    font-size: 2.5rem;
+    margin-block-end: 1.5rem;
+  }
+  .song-mini-card {
+    inline-size: 175px;
+  }
+  .explore-btn {
+    margin-block-end: 1rem;
+  }
+  .overlay-content {
+    min-block-size: 30%;
+  }
+  .featured-songs {
+    gap: rem;
+  }
+}
+
+@media (width < 650px) {
+  .home-container {
+    margin-block-start: 5rem;
+  }
+  .hero-title {
+    font-size: 2rem;
+    margin-block-end: 1.5rem;
+  }
+  .song-mini-card {
+    inline-size: 140px;
+    block-size: 200px;
+  }
+  .mini-card-image {
+    width: 80%;
+    height: 140px;
+  }
+  .explore-btn {
+    margin-block-end: 0.5rem;
+    font-size: 0.8rem;
+    padding: 0.6rem 1rem;
+  }
+  .overlay-content {
+    padding: 0.75rem;
+  }
+  .mini-card-text {
+    font-size: 0.8rem;
+  }
+}
+
+@media (width < 440px) {
+  .home-container {
+    margin-block-start: 4.5rem;
+    font-size: 0.8rem;
+  }
+  .hero-title {
+    font-size: 1.5rem;
+    margin-block-end: 1.5rem;
+  }
+  .explore-btn {
+    display: none;
+  }
+}
